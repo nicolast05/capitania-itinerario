@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fiesta Patronal Virgen del Carmen</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding-top: 80px;
+      background: linear-gradient(to bottom, #fbe9e7, #f3e5f5);
+    }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #8e044d;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+    .day-title {
+      background-color: #f3e5f5;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #4a148c;
+      border-left: 4px solid #6a1b9a;
+      margin-top: 1rem;
+    }
+    table {
+      width: 95%;
+      margin: 0.5rem auto;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    th {
+      background-color: #d1c4e9;
+      color: #311b92;
+    }
+    tr.current {
+      background-color: #c8e6c9 !important;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Fiesta Patronal Virgen del Carmen</h1>
+</header>
+
+<!-- Día 1 -->
+<div class="day-title">Sábado 27 de Julio</div>
+<table>
+  <thead>
+    <tr>
+      <th>Hora</th>
+      <th>Actividad</th>
+      <th>Lugar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Ejemplo de actividad -->
+    <tr data-start="08:00" data-end="09:00">
+      <td>08:00 - 09:00</td>
+      <td>Desayuno comunitario ☕</td>
+      <td>Plaza Principal</td>
+    </tr>
+    <tr data-start="10:00" data-end="11:30">
+      <td>10:00 - 11:30</td>
+      <td>Misa de apertura ⛪</td>
+      <td>Iglesia Virgen del Carmen</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Días siguientes -->
+<div class="day-title">Domingo 28 de Julio</div>
+<table><thead><tr><th>Hora</th><th>Actividad</th><th>Lugar</th></tr></thead><tbody></tbody></table>
+<div class="day-title">Lunes 29 de Julio</div>
+<table><thead><tr><th>Hora</th><th>Actividad</th><th>Lugar</th></tr></thead><tbody></tbody></table>
+<div class="day-title">Martes 30 de Julio</div>
+<table><thead><tr><th>Hora</th><th>Actividad</th><th>Lugar</th></tr></thead><tbody></tbody></table>
+<div class="day-title">Miércoles 31 de Julio</div>
+<table><thead><tr><th>Hora</th><th>Actividad</th><th>Lugar</th></tr></thead><tbody></tbody></table>
+<div class="day-title">Jueves 01 de Agosto</div>
+<table><thead><tr><th>Hora</th><th>Actividad</th><th>Lugar</th></tr></thead><tbody></tbody></table>
+<div class="day-title">Viernes 02 de Agosto</div>
+<table><thead><tr><th>Hora</th><th>Actividad</th><th>Lugar</th></tr></thead><tbody></tbody></table>
+
+<script>
+function getCurrentTime() {
+  const now = new Date();
+  const h = now.getHours().toString().padStart(2, '0');
+  const m = now.getMinutes().toString().padStart(2, '0');
+  return h + ':' + m;
+}
+function isNowBetween(start, end, now) {
+  return now >= start && now <= end;
+}
+function highlightCurrentRow() {
+  const now = getCurrentTime();
+  const rows = document.querySelectorAll('tbody tr');
+  rows.forEach(row => {
+    const start = row.dataset.start;
+    const end = row.dataset.end;
+    if (start && end && isNowBetween(start, end, now)) {
+      row.classList.add('current');
+    } else {
+      row.classList.remove('current');
+    }
+  });
+}
+highlightCurrentRow();
+setInterval(highlightCurrentRow, 60000);
+</script>
+
+</body>
+</html>
